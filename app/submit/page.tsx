@@ -1,63 +1,75 @@
-"use client"
+"use client";
 
-import { CardFooter } from "@/components/ui/card"
+import { CardFooter } from "@/components/ui/card";
 
-import type React from "react"
+import type React from "react";
 
-import { useState } from "react"
-import { useRouter } from "next/navigation"
-import { ArrowLeft, Upload, X } from "lucide-react"
-import Link from "next/link"
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { ArrowLeft, Upload, X } from "lucide-react";
+import Link from "next/link";
 
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Checkbox } from "@/components/ui/checkbox"
-import SubmitConfirmation from "@/components/submit-confirmation"
-import RichTextEditor from "@/components/rich-text-editor"
-import Footer from "@/components/footer"
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Checkbox } from "@/components/ui/checkbox";
+import SubmitConfirmation from "@/components/submit-confirmation";
+import RichTextEditor from "@/components/rich-text-editor";
+import Footer from "@/components/footer";
 
 export default function SubmitPage() {
-  const router = useRouter()
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [showConfirmation, setShowConfirmation] = useState(false)
-  const [receiveNotifications, setReceiveNotifications] = useState(false)
-  const [file, setFile] = useState<File | null>(null)
+  const router = useRouter();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showConfirmation, setShowConfirmation] = useState(false);
+  const [receiveNotifications, setReceiveNotifications] = useState(false);
+  const [file, setFile] = useState<File | null>(null);
   const [formState, setFormState] = useState({
     type: "",
     scope: "",
     description: "",
     email: "",
-  })
+  });
 
   const handleChange = (field: string, value: string) => {
-    setFormState((prev) => ({ ...prev, [field]: value }))
-  }
+    setFormState((prev) => ({ ...prev, [field]: value }));
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
+    e.preventDefault();
+    setIsSubmitting(true);
 
     // Simulate form submission
     setTimeout(() => {
-      setIsSubmitting(false)
-      setShowConfirmation(true)
+      setIsSubmitting(false);
+      setShowConfirmation(true);
 
       // Redirect back to home after 3 seconds
       setTimeout(() => {
-        router.push("/")
-      }, 3000)
-    }, 1500)
-  }
+        router.push("/");
+      }, 3000);
+    }, 1500);
+  };
 
   const removeFile = () => {
-    setFile(null)
-  }
+    setFile(null);
+  };
 
   if (showConfirmation) {
-    return <SubmitConfirmation />
+    return <SubmitConfirmation />;
   }
 
   return (
@@ -69,8 +81,11 @@ export default function SubmitPage() {
           <div className="absolute bottom-0 right-1/4 w-1/2 h-1/2 bg-purple-600/10 rounded-full filter blur-[100px]"></div>
         </div>
 
-        <div className="max-w-4xl mx-auto relative z-10">
-          <Link href="/" className="inline-flex items-center text-blue-400 hover:text-blue-300 mb-8 transition-colors">
+        <div className="max-w-4xl mx-auto relative z-10 mt-16">
+          <Link
+            href="/"
+            className="inline-flex items-center text-blue-400 hover:text-blue-300 mb-8 transition-colors"
+          >
             <ArrowLeft className="mr-2 h-4 w-4" />
             Back to Home
           </Link>
@@ -88,11 +103,21 @@ export default function SubmitPage() {
               <form onSubmit={handleSubmit} className="space-y-8">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div className="space-y-2 relative">
-                    <Label htmlFor="type" className="text-sm font-medium text-gray-300 mb-1 block">
+                    <Label
+                      htmlFor="type"
+                      className="text-sm font-medium text-gray-300 mb-1 block"
+                    >
                       Request Type
                     </Label>
-                    <Select required value={formState.type} onValueChange={(value) => handleChange("type", value)}>
-                      <SelectTrigger id="type" className="fancy-input bg-gray-800/50 border-gray-700 h-12">
+                    <Select
+                      required
+                      value={formState.type}
+                      onValueChange={(value) => handleChange("type", value)}
+                    >
+                      <SelectTrigger
+                        id="type"
+                        className="fancy-input bg-gray-800/50 border-gray-700 h-12"
+                      >
                         <SelectValue placeholder="Select request type" />
                       </SelectTrigger>
                       <SelectContent className="bg-gray-800 border-gray-700">
@@ -104,11 +129,21 @@ export default function SubmitPage() {
                   </div>
 
                   <div className="space-y-2 relative">
-                    <Label htmlFor="scope" className="text-sm font-medium text-gray-300 mb-1 block">
+                    <Label
+                      htmlFor="scope"
+                      className="text-sm font-medium text-gray-300 mb-1 block"
+                    >
                       Scope
                     </Label>
-                    <Select required value={formState.scope} onValueChange={(value) => handleChange("scope", value)}>
-                      <SelectTrigger id="scope" className="fancy-input bg-gray-800/50 border-gray-700 h-12">
+                    <Select
+                      required
+                      value={formState.scope}
+                      onValueChange={(value) => handleChange("scope", value)}
+                    >
+                      <SelectTrigger
+                        id="scope"
+                        className="fancy-input bg-gray-800/50 border-gray-700 h-12"
+                      >
                         <SelectValue placeholder="Select scope" />
                       </SelectTrigger>
                       <SelectContent className="bg-gray-800 border-gray-700">
@@ -122,7 +157,10 @@ export default function SubmitPage() {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="description" className="text-sm font-medium text-gray-300 mb-1 block">
+                  <Label
+                    htmlFor="description"
+                    className="text-sm font-medium text-gray-300 mb-1 block"
+                  >
                     Description
                   </Label>
                   <RichTextEditor
@@ -133,14 +171,21 @@ export default function SubmitPage() {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="attachment" className="text-sm font-medium text-gray-300 mb-1 block">
+                  <Label
+                    htmlFor="attachment"
+                    className="text-sm font-medium text-gray-300 mb-1 block"
+                  >
                     Attachments
                   </Label>
                   {file ? (
                     <div className="flex items-center p-4 bg-gray-800/50 border border-gray-700 rounded-lg">
                       <div className="flex-1 truncate">
-                        <p className="text-sm font-medium text-gray-200 truncate">{file.name}</p>
-                        <p className="text-xs text-gray-400">{(file.size / 1024).toFixed(1)} KB</p>
+                        <p className="text-sm font-medium text-gray-200 truncate">
+                          {file.name}
+                        </p>
+                        <p className="text-xs text-gray-400">
+                          {(file.size / 1024).toFixed(1)} KB
+                        </p>
                       </div>
                       <Button
                         type="button"
@@ -162,9 +207,14 @@ export default function SubmitPage() {
                         <div className="flex flex-col items-center justify-center pt-5 pb-6">
                           <Upload className="w-8 h-8 mb-3 text-gray-400" />
                           <p className="mb-2 text-sm text-gray-300">
-                            <span className="font-semibold">Click to upload</span> or drag and drop
+                            <span className="font-semibold">
+                              Click to upload
+                            </span>{" "}
+                            or drag and drop
                           </p>
-                          <p className="text-xs text-gray-500">SVG, PNG, JPG or GIF (MAX. 10MB)</p>
+                          <p className="text-xs text-gray-500">
+                            SVG, PNG, JPG or GIF (MAX. 10MB)
+                          </p>
                         </div>
                         <input
                           id="attachment"
@@ -181,17 +231,25 @@ export default function SubmitPage() {
                   <Checkbox
                     id="notifications"
                     checked={receiveNotifications}
-                    onCheckedChange={(checked) => setReceiveNotifications(checked as boolean)}
+                    onCheckedChange={(checked) =>
+                      setReceiveNotifications(checked as boolean)
+                    }
                     className="data-[state=checked]:bg-blue-600 data-[state=checked]:border-blue-600"
                   />
-                  <Label htmlFor="notifications" className="text-sm text-gray-300 cursor-pointer">
+                  <Label
+                    htmlFor="notifications"
+                    className="text-sm text-gray-300 cursor-pointer"
+                  >
                     Receive notifications about this ticket
                   </Label>
                 </div>
 
                 {receiveNotifications && (
                   <div className="space-y-2 animate-in">
-                    <Label htmlFor="email" className="text-sm font-medium text-gray-300 mb-1 block">
+                    <Label
+                      htmlFor="email"
+                      className="text-sm font-medium text-gray-300 mb-1 block"
+                    >
                       Email
                     </Label>
                     <Input
@@ -250,5 +308,5 @@ export default function SubmitPage() {
       {/* Footer */}
       <Footer />
     </div>
-  )
+  );
 }
