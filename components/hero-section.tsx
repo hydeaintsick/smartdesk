@@ -6,6 +6,7 @@ import { ArrowRight } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import ParticleBackground from "@/components/particle-background";
+import { config } from "@/config";
 
 export default function HeroSection() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -64,22 +65,20 @@ export default function HeroSection() {
               <div className="relative w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl rotate-12 shadow-lg">
                 <div className="absolute inset-1 bg-black rounded-xl flex items-center justify-center">
                   <span className="text-2xl md:text-3xl font-bold text-white">
-                    S
+                    {config.tag}
                   </span>
                 </div>
               </div>
               <h2 className="ml-4 text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-blue-500 bg-clip-text text-transparent">
-                SmartDesk
+                {config.appName}
               </h2>
             </div>
           </div>
 
-          <h1 className="animate-on-scroll transition-all duration-700 delay-100 text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight bg-gradient-to-r from-blue-400 via-purple-400 to-blue-500 bg-clip-text text-transparent">
-            Revolutionize Your IT Support Experience
-          </h1>
+          <h1 className="animate-on-scroll transition-all duration-700 delay-100 text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight bg-gradient-to-r from-blue-400 via-purple-400 to-blue-500 bg-clip-text text-transparent"></h1>
 
           <p className="animate-on-scroll transition-all duration-700 delay-300 text-xl md:text-2xl text-gray-300 max-w-2xl mx-auto">
-            Effortless ticket submission and resolution with SmartDesk.
+            {config.subHeadline}
           </p>
 
           <div className="animate-on-scroll transition-all duration-700 delay-500 flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
